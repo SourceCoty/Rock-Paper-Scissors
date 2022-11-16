@@ -14,13 +14,15 @@
 //These are the global variables that will be called inside functions.
 const playerSelection = prompt("Please enter Rock, Paper, or Scissors");
 const computerSelection = getComputerChoice();
+let playerWins = 0;
+let computerWins = 0;
 
 
 //These are the outputs that the user will see. 
 console.log(game(playerSelection, computerSelection));
 
 
-//This function randomly chooses Rock, Paper or Scissors for the Computer.
+//This function randomly chooses Rock, Paper or Scissors for the computer.
 function getComputerChoice() {
     const myArray = ["rock" ,"paper", "scissors"]
     return myArray[Math.floor(Math.random() * myArray.length)];
@@ -29,10 +31,11 @@ function getComputerChoice() {
 
 //This code executes each round of the game.
 function game(playerSelection, computerSelection) {
-   //This For Loop will run the game for a series of 5. **All requisite variables for the game need to be defined within the scope of this loop** 
+   //This For Loop will run the game for a series of 5. **All requisite variables for the game need to be defined within the scope of this loop.** 
     for (let i = 0; i < 5; i++) {
         const playerSelection = prompt("Please enter Rock, Paper, or Scissors");
         const computerSelection = getComputerChoice();
+
 
         //This Else If function sets the parameters for each round and determines the outcome. 
         if (playerSelection == "rock" && computerSelection == "rock") {
@@ -40,29 +43,47 @@ function game(playerSelection, computerSelection) {
         } 
         else if (playerSelection == "rock" && computerSelection == "scissors") {
             console.log("You win! Rock beats Scissors");
+            playerWins++;
         }
         else if (playerSelection == "rock" && computerSelection == "paper") {
             console.log("You lose! Paper beats Rock");
+            computerWins++;
         } 
         else if (playerSelection == "paper" && computerSelection == "rock") {
             console.log("You win! Paper beats Rock");
+            playerWins++;
         }
         else if (playerSelection == "paper" && computerSelection == "paper") {
-            console.log("It's a tie! Paper is euqal to Paper");
+            console.log("It's a tie! Paper is equal to Paper");
         }
         else if (playerSelection == "paper" && computerSelection == "scissors") {
             console.log("You lose! Scissors beats Paper");
+            computerWins++
         }
         else if (playerSelection == "scissors" && computerSelection == "rock") {
             console.log("You lose! Rock beast Scissors");
+            computerWins++;
         }
         else if (playerSelection == "scissors" && computerSelection == "paper") {
             console.log("You win! Scissors beats Paper");
+            playerWins++;
         }
         else if (playerSelection == "scissors" && computerSelection == "scissors") {
             console.log("It's a tie! Scissors is equal to Scissors");
         }
-        else console.log("You have input a selection that is not available. Check for typos and try again")
+        //This prints the score for each round. 
+        console.log("Player Wins: " + playerWins + " Computer Wins: " + computerWins);
+    }
+    
+    
+    //This determines the game winner. 
+    if (playerWins > computerWins) {    
+    console.log("Great job! You won this series!");
+    } else if (playerWins < computerWins) {
+    console.log("Better luck next time! You lost this series.")
+    }
+    else { 
+        console.log("Everyone's a winner! ...but also a loser. This series was a tie.")
     }
 }
 
