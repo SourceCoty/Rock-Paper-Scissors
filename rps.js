@@ -74,6 +74,4 @@ function game() {
     console.log(declareWinner());
 } 
 
-
-
 game()
