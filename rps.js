@@ -1,5 +1,6 @@
 let playerWins = 0
 let computerWins = 0
+let computerSelection = getComputerSelection()
 const buttons = document.querySelectorAll('button')
 
 
@@ -14,54 +15,49 @@ function playRound(playerSelection) {
 
     if (playerSelection == "rock" && computerSelection == "rock") {
     round = "It's a tie! Rock is equal to Rock"
+    playerWins++
+    computerWins++
     } 
     else if (playerSelection == "rock" && computerSelection == "scissors") {
         round = "You win! Rock beats Scissors"
+        playerWins++
     }
     else if (playerSelection == "rock" && computerSelection == "paper") {
         round = "You lose! Paper beats Rock"
+        computerWins++
     } 
     else if (playerSelection == "paper" && computerSelection == "rock") {
         round = "You win! Paper beats Rock"
+        playerWins++
     }
     else if (playerSelection == "paper" && computerSelection == "paper") {
         round = "It's a tie! Paper is equal to Paper"
+        playerWins++
+        computerWins++
     }
     else if (playerSelection == "paper" && computerSelection == "scissors") {
         round = "You lose! Scissors beats Paper"
+        computerWins++
     }
     else if (playerSelection == "scissors" && computerSelection == "rock") {
         round = "You lose! Rock beast Scissors"
+        computerWins++
     }
     else if (playerSelection == "scissors" && computerSelection == "paper") {
         round = "You win! Scissors beats Paper"
+        playerWins++
     }
     else if (playerSelection == "scissors" && computerSelection == "scissors") {
         round = "It's a tie! Scissors is equal to Scissors"
+        playerWins++
+        computerWins++
     }
     document.getElementById('round').innerHTML = round
 
 }
 
-function countTally(playerSelection) {
-    let tally = ''
-    let computerSelection = getComputerSelection();
-
-    if (playerSelection == "rock" && computerSelection == "scissors" ||
-        playerSelection == "paper" && computerSelection == "rock" ||
-        playerSelection == "scissors" && computerSelection == "paper") {
-            playerWins++
-            tally = "Player score: " + playerWins + " Computer score: " + computerWins
-    } else if (playerSelection == "rock" && computerSelection == "paper" ||
-        playerSelection == "paper" && computerSelection == "scissors" ||
-        playerSelection == "scissors" && computerSelection == "rock") {
-            computerWins++   
-            tally = "Player score: " + playerWins + " Computer score: " + computerWins
-    } else {
-        playerWins++
-        computerWins++
-        tally = "Player score: " + playerWins + " Computer score: " + computerWins
-    }
+function countTally() {
+    let tally = "Player score: " + playerWins + " |" + " Computer score: " + computerWins
     document.getElementById('tally').innerHTML = tally
 }
 
@@ -86,13 +82,13 @@ function totalScore() {
 
 buttons.forEach((button) => {
     button.addEventListener('click', () => {    
-    playRound(button.id)
+    playRound(button.id, computerSelection)
     })
 })
 
 buttons.forEach((button) => {
     button.addEventListener('click', () => {    
-    countTally(button.id)
+    countTally(button.id, computerSelection)
     })
 })
 
