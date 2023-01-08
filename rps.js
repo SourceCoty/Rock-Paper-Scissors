@@ -57,7 +57,7 @@ function playRound(playerSelection) {
 }
 
 function countTally() {
-    let tally = "Player score: " + playerWins + " |" + " Computer score: " + computerWins
+    let tally = "Player score:  " + playerWins + "  vs " + "  Computer score: " + computerWins
     document.getElementById('tally').innerHTML = tally
 }
 
